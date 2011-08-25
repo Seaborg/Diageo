@@ -21,6 +21,16 @@ Oxwood::Application.configure do
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
+  
+  #SMTP Setting
+  config.action_mailer.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "oxwood.ie",
+  :authentication => "plain",
+  :user_name => "admin@ilustratorzy.pl",
+  :password => "4printing",
+  :enable_starttls_auto => true
+  }
 end
 

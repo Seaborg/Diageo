@@ -44,11 +44,14 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
+        format.html { redirect_to(@product,
+          :notice => 'Product was successfully created.') }
+        format.xml  { render :xml => @product, :status => :created,
+          :location => @product }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @product.errors,
+          :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +63,13 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+        format.html { redirect_to(@product,
+          :notice => 'Product was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @product.errors,
+          :status => :unprocessable_entity }
       end
     end
   end
@@ -78,6 +83,14 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(products_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.atom
+      format.xml { render :xml => @product }
     end
   end
 end
