@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product:</b>
+  <%= @line_item.product_id %>
+	</p>
+	
+	
+</p>
+
+<!-- <p>
+  <b>Cart:</b>
+  <%= @line_item.cart_id %>
+</p> -->
+
+<p>
+  <b>Quantity:</b>
+  <%= @line_item.quantity %>
+</p>
+	
+	<!-- <%=
+		ActiveRecord::Base.connection.select_rows("
+	    SELECT line_items.product_id, orders.promotext
+	    FROM line_items
+	    LEFT JOIN orders ON line_items.order_id=orders.id")
+		%>  -->
+	<p>
+	  <b>Promotext:</b>
+	  <!-- <% test = Order.where(:id => @line_item.order_id) %> -->
+	<%= 
+	@test = Order.where(:id => @line_item.order_id)
+	a = @test[0]
+	a.promotext
+	%>
+	</p>
+	<p>
+	<b>Image URL:</b>
+	  <!-- <% test = Order.where(:id => @line_item.order_id) %> -->
+	<%= 
+	@test1 = Product.where(:id => @line_item.product_id)
+	b = @test1[0]
+	b.image_url
+	%>
+	</p>
+
+
+<%= link_to 'Edit', edit_line_item_path(@line_item) %> |
+<%= link_to 'Back', line_items_path %>
